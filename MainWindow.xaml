@@ -7,14 +7,14 @@
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"  
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" WindowState="Maximized" WindowStyle="SingleBorderWindow">
     <Window.Resources>
         <ControlTemplate x:Key="CustomPushpinTemplate" TargetType="m:Pushpin">
             <Image Source="C:\Users\rumer\source\repos\WpfApp1FrameWorkBing\Images\encierro.png" Width="50" Height="50" />
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <m:Map CredentialsProvider="Aowl3fmRvC-iCiFMh_IIb3kG7UAHkcLy8maARHJQS56S4owWmfwxPkJTn8Nt4sTq" x:Name="myMap" MouseDoubleClick="myMap_MouseDoubleClick">
+        <m:Map CredentialsProvider="Aowl3fmRvC-iCiFMh_IIb3kG7UAHkcLy8maARHJQS56S4owWmfwxPkJTn8Nt4sTq" x:Name="myMap" MouseDoubleClick="myMap_MouseDoubleClick" Loaded="myMap_Loaded">
             <m:MapLayer>
                 <m:Pushpin Location="42.81687, -1.64323" Template="{StaticResource CustomPushpinTemplate}" />
             </m:MapLayer>
