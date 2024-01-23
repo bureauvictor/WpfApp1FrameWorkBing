@@ -67,43 +67,36 @@ namespace WpfApp1FrameWorkBing
             Point mousePosition = e.GetPosition(myMap);
             Location clickedLocation = myMap.ViewportPointToLocation(mousePosition);
 
-
             List<PointsInformation> listofpoints = new List<PointsInformation>();
 
-           
             // For demonstration, calculate the distance between the clicked point and the sample point
             for (int i = 0; myMap.Children.Count > i; i++)
             {
                 Location samplePoint = myMap.Children[i].ReadLocalValue(MapLayer.PositionProperty) as Location;
-                
-                if (samplePoint?.Latitude != null)
+                var pushpin = myMap.Children[i].ReadLocalValue(TextBlock.TextProperty);
+
+                if (samplePoint?.Latitude != null && pushpin != DependencyProperty.UnsetValue)
                 {
                     PointsInformation point = new PointsInformation();
                     point.DistanceKM = CalculateDistance(clickedLocation, samplePoint);
 
                     // Assuming i is the index of the Pushpin in myMap.Children
-                    Pushpin pushpin = myMap.Children[i].ReadLocalValue(MapLayer.PositionProperty);
-
+                   
                     if (pushpin != null)
                     {
-                        // Retrieve the label from the Tag property
-                        string label = pushpin.Tag as string;
 
-                        if (label != null)
-                        {
-                            // Now you can use the label variable
-                            point.OfficeName = label;
-                        }
+                        // Now you can use the label variable
+                        point.OfficeName = pushpin.ToString();
+
                     }
 
                     listofpoints.Add(point); 
                 }
             }
             
-
-            MessageBox.Show($"Distance from closest office: {listofpoints.OrderBy(num => Math.Abs(num.DistanceKM)).Select(num => num.DistanceKM).First()} kilometers; {listofpoints.OrderBy(num => Math.Abs(num.DistanceKM)).Select(num => num.OfficeName).First()}"+
-                " "+
-           $"Distance from farest office: {listofpoints.OrderByDescending(num => Math.Abs(num.DistanceKM)).Select(num => num.DistanceKM).First()} kilometers; {listofpoints.OrderByDescending(num => Math.Abs(num.DistanceKM)).Select(num => num.OfficeName).First()}");
+            MessageBox.Show($"Distance from closest office: {Math.Round(listofpoints.OrderBy(num => Math.Abs(num.DistanceKM)).Select(num => num.DistanceKM).First(), 2)} kilometers, {listofpoints.OrderBy(num => Math.Abs(num.DistanceKM)).Select(num => num.OfficeName).First()}." +
+                "  "+
+           $" Distance from farest office: {Math.Round(listofpoints.OrderByDescending(num => Math.Abs(num.DistanceKM)).Select(num => num.DistanceKM).First(), 2)} kilometers, {listofpoints.OrderByDescending(num => Math.Abs(num.DistanceKM)).Select(num => num.OfficeName).First()}.");
         }
         private static List<PointsInformation> retrieveOffices()
         {
