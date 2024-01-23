@@ -14,7 +14,7 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid>
-        <m:Map CredentialsProvider="Aowl3fmRvC-iCiFMh_IIb3kG7UAHkcLy8maARHJQS56S4owWmfwxPkJTn8Nt4sTq" x:Name="myMap">
+        <m:Map CredentialsProvider="Aowl3fmRvC-iCiFMh_IIb3kG7UAHkcLy8maARHJQS56S4owWmfwxPkJTn8Nt4sTq" x:Name="myMap" MouseDoubleClick="myMap_MouseDoubleClick">
             <m:MapLayer>
                 <m:Pushpin Location="42.81687, -1.64323" Template="{StaticResource CustomPushpinTemplate}" />
             </m:MapLayer>

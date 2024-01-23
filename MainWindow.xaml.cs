@@ -63,11 +63,11 @@ namespace WpfApp1FrameWorkBing
 
            
             // For demonstration, calculate the distance between the clicked point and the sample point
-            for (int i = 0; myMap.Children.Count <= i; i++)
+            for (int i = 0; myMap.Children.Count > i; i++)
             {
                 PointsInformation point = new PointsInformation();
                 Location samplePoint = myMap.Children[i].ReadLocalValue(MapLayer.PositionProperty) as Location;
-                point.DistanceKM = CalculateDistance(clickedLocation, samplePoint);
+               // point.DistanceKM = CalculateDistance(clickedLocation, samplePoint);
 
                 // Assuming i is the index of the Pushpin in myMap.Children
                 Pushpin pushpin = myMap.Children[i] as Pushpin;
